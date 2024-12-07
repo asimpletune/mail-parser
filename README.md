@@ -267,6 +267,14 @@ Supported character sets via the optional dependency [encoding_rs](https://crate
 - WINDOWS-874
 - IBM-866
 
+## Typescript bindings
+
+This project uses TS bindings from [`ts-rs`](https://github.com/Aleph-Alpha/ts-rs) to generate TS bindings from the Rust structs. Please refer to that project for specifics on using that.
+
+```
+import { Message, Addr } from 'mail-parser-ts-bindings'
+```
+
 ## License
 
 Licensed under either of

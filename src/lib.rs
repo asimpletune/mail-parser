@@ -267,8 +267,12 @@ use parsers::{
 #[cfg(feature = "serde_support")]
 use serde::{Deserialize, Serialize};
 
+use ts_rs::TS;
+
 /// An RFC5322/RFC822 message.
 #[derive(Debug, Default, PartialEq, Clone)]
+#[derive(TS)]
+#[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct Message<'x> {
     #[cfg_attr(feature = "serde_support", serde(default))]
@@ -288,6 +292,8 @@ pub struct Message<'x> {
 
 /// MIME Message Part
 #[derive(Debug, PartialEq, Default, Clone)]
+#[derive(TS)]
+#[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct MessagePart<'x> {
     #[cfg_attr(feature = "serde_support", serde(default))]
@@ -340,6 +346,8 @@ pub type MessagePartId = usize;
 /// - MultiPart: Multipart part.
 ///
 #[derive(Debug, PartialEq, Clone)]
+#[derive(TS)]
+#[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub enum PartType<'x> {
     /// Any text/* part
@@ -371,6 +379,8 @@ impl<'x> Default for PartType<'x> {
 
 /// An RFC5322 or RFC2369 internet address.
 #[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(TS)]
+#[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct Addr<'x> {
     /// The address name including comments
@@ -400,6 +410,8 @@ impl<'x> Addr<'x> {
 
 /// An RFC5322 address group.
 #[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(TS)]
+#[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct Group<'x> {
     /// Group name
@@ -429,6 +441,8 @@ impl<'x> Group<'x> {
 
 /// A message header.
 #[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(TS)]
+#[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct Header<'x> {
     pub name: HeaderName<'x>,
@@ -477,6 +491,8 @@ impl<'x> Header<'x> {
 }
 
 #[derive(Debug, Clone)]
+#[derive(TS)]
+#[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub enum HeaderName<'x> {
     Rfc(RfcHeader),
@@ -561,6 +577,8 @@ impl<'x> HeaderName<'x> {
 /// A header field
 #[repr(u8)]
 #[derive(Debug, PartialEq, Eq, Hash, Clone, Copy, PartialOrd, Ord)]
+#[derive(TS)]
+#[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 #[cfg_attr(feature = "serde_support", serde(rename_all = "snake_case"))]
 pub enum RfcHeader {
@@ -715,6 +733,8 @@ impl Display for RfcHeader {
 
 /// Parsed header value.
 #[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(TS)]
+#[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub enum HeaderValue<'x> {
     /// Single address
@@ -892,6 +912,8 @@ impl<'x> HeaderValue<'x> {
 
 /// An RFC2047 Content-Type or RFC2183 Content-Disposition MIME header field.
 #[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(TS)]
+#[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct ContentType<'x> {
     pub c_type: Cow<'x, str>,
@@ -903,6 +925,8 @@ pub struct ContentType<'x> {
 
 /// An RFC5322 datetime.
 #[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(TS)]
+#[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct DateTime {
     pub year: u16,
