@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "name": "mail-parser-ts-bindings",
+  "version": "0.8.2",
+  "description": "TS bindings for Stalwart Lab's mail-parser",
+  "main": "bindings/index.js",
+  "types": "bindings/index.d.ts",
+  "files": [
+    "bindings/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asimpletune/mail-parser.git"
+  },
+  "keywords": [
+    "TS",
+    "email",
+    "bindings"
+  ],
+  "author": "Spencer Scorcelletti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/asimpletune/mail-parser/issues"
+  },
+  "homepage": "https://github.com/asimpletune/mail-parser#readme"
+}

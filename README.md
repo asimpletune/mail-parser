@@ -275,6 +275,8 @@ This project uses TS bindings from [`ts-rs`](https://github.com/Aleph-Alpha/ts-r
 import { Message, Addr } from 'mail-parser-ts-bindings'
 ```
 
+To test changes locally just run `npm pack`, which will generate a tarball, copy it to the new project, and then `npm install <tarball>` to test the changes locally.
+
 ## License
 
 Licensed under either of
