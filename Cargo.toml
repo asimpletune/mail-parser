@@ -12,10 +12,17 @@ categories = ["email", "parser-implementations"]
 readme = "README.md"
 resolver = "2"
 
+[lib]
+crate-type = ["cdylib", "rlib"]
+
 [dependencies]
 encoding_rs = { version="0.8", optional=true }
 serde = { version = "1.0", features = ["derive"], optional=true }
 ts-rs = { version = "10.1", features = ["serde-compat", "serde-json-impl", "chrono-impl"] }
+wasm-bindgen = "0.2.100"
+serde_json = "1.0"
+serde-wasm-bindgen = "0.2"
+js-sys = "0.3.77"
 
 [dev-dependencies]
 mail-parser = { path = ".", features = ["serde_support", "full_encoding"] }

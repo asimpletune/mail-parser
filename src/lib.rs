@@ -271,8 +271,8 @@ pub(crate) type HdrParseFnc = for<'x> fn(&mut MessageStream<'x>) -> crate::Heade
 
 /// An RFC5322/RFC822 message.
 #[derive(Debug, Default, PartialEq, Clone)]
-#[derive(TS)]
-#[ts(export)]
+// #[derive(TS)]
+// #[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct Message<'x> {
     #[cfg_attr(feature = "serde_support", serde(default))]
@@ -292,8 +292,8 @@ pub struct Message<'x> {
 
 /// MIME Message Part
 #[derive(Debug, PartialEq, Default, Clone)]
-#[derive(TS)]
-#[ts(export)]
+// #[derive(TS)]
+// #[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct MessagePart<'x> {
     #[cfg_attr(feature = "serde_support", serde(default))]
@@ -341,8 +341,8 @@ pub type MessagePartId = usize;
 /// - MultiPart: Multipart part.
 ///
 #[derive(Debug, PartialEq, Clone)]
-#[derive(TS)]
-#[ts(export)]
+// #[derive(TS)]
+// #[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub enum PartType<'x> {
     /// Any text/* part
@@ -374,8 +374,8 @@ impl<'x> Default for PartType<'x> {
 
 /// An RFC5322 or RFC2369 internet address.
 #[derive(Debug, PartialEq, Eq, Clone)]
-#[derive(TS)]
-#[ts(export)]
+// #[derive(TS)]
+// #[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct Addr<'x> {
     /// The address name including comments
@@ -389,8 +389,8 @@ pub struct Addr<'x> {
 
 /// An RFC5322 address group.
 #[derive(Debug, PartialEq, Eq, Clone)]
-#[derive(TS)]
-#[ts(export)]
+// #[derive(TS)]
+// #[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct Group<'x> {
     /// Group name
@@ -404,8 +404,8 @@ pub struct Group<'x> {
 
 /// A message header.
 #[derive(Debug, PartialEq, Eq, Clone)]
-#[derive(TS)]
-#[ts(export)]
+// #[derive(TS)]
+// #[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct Header<'x> {
     pub name: HeaderName<'x>,
@@ -417,8 +417,8 @@ pub struct Header<'x> {
 
 /// A header field
 #[derive(Debug, Clone, PartialOrd, Ord)]
-#[derive(TS)]
-#[ts(export)]
+// #[derive(TS)]
+// #[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 #[cfg_attr(feature = "serde_support", serde(rename_all = "snake_case"))]
 pub enum HeaderName<'x> {
@@ -464,8 +464,8 @@ pub enum HeaderName<'x> {
 
 /// Parsed header value.
 #[derive(Debug, PartialEq, Eq, Clone, Default)]
-#[derive(TS)]
-#[ts(export)]
+// #[derive(TS)]
+// #[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub enum HeaderValue<'x> {
     /// Address list or group
@@ -491,8 +491,8 @@ pub enum HeaderValue<'x> {
 }
 
 #[derive(Debug, PartialEq, Eq, Clone)]
-#[derive(TS)]
-#[ts(export)]
+// #[derive(TS)]
+// #[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub enum Address<'x> {
     /// Address list
@@ -514,8 +514,8 @@ pub enum HeaderForm {
 }
 /// An RFC2047 Content-Type or RFC2183 Content-Disposition MIME header field.
 #[derive(Debug, PartialEq, Eq, Clone)]
-#[derive(TS)]
-#[ts(export)]
+// #[derive(TS)]
+// #[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct ContentType<'x> {
     pub c_type: Cow<'x, str>,
@@ -527,8 +527,8 @@ pub struct ContentType<'x> {
 
 /// An RFC5322 datetime.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-#[derive(TS)]
-#[ts(export)]
+// #[derive(TS)]
+// #[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct DateTime {
     pub year: u16,
@@ -543,8 +543,8 @@ pub struct DateTime {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
-#[derive(TS)]
-#[ts(export)]
+// #[derive(TS)]
+// #[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct Received<'x> {
     #[cfg_attr(
@@ -552,97 +552,97 @@ pub struct Received<'x> {
         serde(skip_serializing_if = "Option::is_none"),
         serde(default)
     )]
-    #[ts(optional = nullable)]
+    // #[ts(optional = nullable)]
     pub from: Option<Host<'x>>,
     #[cfg_attr(
         feature = "serde_support",
         serde(skip_serializing_if = "Option::is_none"),
         serde(default)
     )]
-    #[ts(optional = nullable)]
+    // #[ts(optional = nullable)]
     pub from_ip: Option<IpAddr>,
     #[cfg_attr(
         feature = "serde_support",
         serde(skip_serializing_if = "Option::is_none"),
         serde(default)
     )]
-    #[ts(optional = nullable)]
+    // #[ts(optional = nullable)]
     pub from_iprev: Option<Cow<'x, str>>,
     #[cfg_attr(
         feature = "serde_support",
         serde(skip_serializing_if = "Option::is_none"),
         serde(default)
     )]
-    #[ts(optional = nullable)]
+    // #[ts(optional = nullable)]
     pub by: Option<Host<'x>>,
     #[cfg_attr(
         feature = "serde_support",
         serde(skip_serializing_if = "Option::is_none"),
         serde(default)
     )]
-    #[ts(optional = nullable)]
+    // #[ts(optional = nullable)]
     pub for_: Option<Cow<'x, str>>,
     #[cfg_attr(
         feature = "serde_support",
         serde(skip_serializing_if = "Option::is_none"),
         serde(default)
     )]
-    #[ts(optional = nullable)]
+    // #[ts(optional = nullable)]
     pub with: Option<Protocol>,
     #[cfg_attr(
         feature = "serde_support",
         serde(skip_serializing_if = "Option::is_none"),
         serde(default)
     )]
-    #[ts(optional = nullable)]
+    // #[ts(optional = nullable)]
     pub tls_version: Option<TlsVersion>,
     #[cfg_attr(
         feature = "serde_support",
         serde(skip_serializing_if = "Option::is_none"),
         serde(default)
     )]
-    #[ts(optional = nullable)]
+    // #[ts(optional = nullable)]
     pub tls_cipher: Option<Cow<'x, str>>,
     #[cfg_attr(
         feature = "serde_support",
         serde(skip_serializing_if = "Option::is_none")
     )]
-    #[ts(optional = nullable)]
+    // #[ts(optional = nullable)]
     pub id: Option<Cow<'x, str>>,
     #[cfg_attr(
         feature = "serde_support",
         serde(skip_serializing_if = "Option::is_none"),
         serde(default)
     )]
-    #[ts(optional = nullable)]
+    // #[ts(optional = nullable)]
     pub ident: Option<Cow<'x, str>>,
     #[cfg_attr(
         feature = "serde_support",
         serde(skip_serializing_if = "Option::is_none"),
         serde(default)
     )]
-    #[ts(optional = nullable)]
+    // #[ts(optional = nullable)]
     pub helo: Option<Host<'x>>,
     #[cfg_attr(
         feature = "serde_support",
         serde(skip_serializing_if = "Option::is_none"),
         serde(default)
     )]
-    #[ts(optional = nullable)]
+    // #[ts(optional = nullable)]
     pub helo_cmd: Option<Greeting>,
     #[cfg_attr(
         feature = "serde_support",
         serde(skip_serializing_if = "Option::is_none"),
         serde(default)
     )]
-    #[ts(optional = nullable)]
+    // #[ts(optional = nullable)]
     pub via: Option<Cow<'x, str>>,
     pub date: Option<DateTime>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-#[derive(TS)]
-#[ts(export)]
+// #[derive(TS)]
+// #[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub enum Host<'x> {
     Name(Cow<'x, str>),
@@ -650,8 +650,8 @@ pub enum Host<'x> {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-#[derive(TS)]
-#[ts(export)]
+// #[derive(TS)]
+// #[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub enum TlsVersion {
     SSLv2,
@@ -666,8 +666,8 @@ pub enum TlsVersion {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-#[derive(TS)]
-#[ts(export)]
+// #[derive(TS)]
+// #[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub enum Greeting {
     Helo,
@@ -676,8 +676,8 @@ pub enum Greeting {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-#[derive(TS)]
-#[ts(export)]
+// #[derive(TS)]
+// #[ts(export)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 #[allow(clippy::upper_case_acronyms)]
 pub enum Protocol {
@@ -759,4 +759,19 @@ pub struct BodyPartIterator<'x> {
 pub struct AttachmentIterator<'x> {
     message: &'x Message<'x>,
     pos: isize,
+}
+
+/**
+ * Note this part of the code below is for exporting a wasm binding of the parse function of this library
+ */
+use wasm_bindgen::prelude::*;
+use js_sys::Uint8Array;
+
+#[wasm_bindgen]
+pub fn parse_email(email_bytes: Uint8Array) -> JsValue {
+    let bytes = email_bytes.to_vec();
+    MessageParser::default()
+        .parse(&bytes)
+        .map(|message| serde_wasm_bindgen::to_value(&message).unwrap())
+        .unwrap_or(JsValue::NULL)
 }

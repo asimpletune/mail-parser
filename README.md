@@ -266,6 +266,16 @@ Supported character sets via the optional dependency [encoding_rs](https://crate
 - WINDOWS-874
 - IBM-866
 
+## WASM module
+
+There's a single `parse_email` function in [lib.rs](./src/lib.rs) that's exported and exposes this library's capabilities to other wasm compatibile projects. To generate the wasm run the following:
+
+```bash
+wasm-pack build --target web --features serde_support
+```
+
+Note that this is extremely finicky, since the [typescript bindings](#typescript-bindings) are not compatible with this build step. I currently just comment them out, build the wasm module, and then uncomment them again.
+
 ## Typescript bindings
 
 This project uses TS bindings from [`ts-rs`](https://github.com/Aleph-Alpha/ts-rs) to generate TS bindings from the Rust structs. Please refer to that project for specifics on using that.
