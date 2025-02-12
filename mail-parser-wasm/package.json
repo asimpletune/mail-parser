@@ -1,18 +1,31 @@
 {
   "private": true,
   "name": "@mail-parser/wasm-bindings",
+  "type": "module",
+  "collaborators": [
+    "Stalwart Labs <hello@stalw.art>"
+  ],
   "version": "0.9.1",
+  "license": "Apache-2.0 OR MIT",
   "description": "wasm bindings for Stalwart Lab's mail-parser",
-  "main": "pkg/mail_parser.js",
-  "types": "pkg/mail_parser.d.ts",
-  "files": ["pkg/"],
+  "scripts": {
+    "build": "wasm-pack build --target web --no-pack --features serde_support && cp -r ../pkg/* . && npm run patch-declarations",
+    "patch-declarations": "node patch-declarations.js"
+  },
+  "files": [
+    "mail_parser_bg.wasm",
+    "mail_parser.js",
+    "mail_parser.d.ts",
+    "mail_parser_bg.wasm.d.ts"
+  ],
+  "main": "mail_parser.js",
+  "types": "mail_parser.d.ts",
   "keywords": [
     "wasm",
     "email",
     "bindings"
   ],
   "author": "Spencer Scorcelletti",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/asimpletune/mail-parser/issues"
   },

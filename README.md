@@ -270,6 +270,8 @@ Supported character sets via the optional dependency [encoding_rs](https://crate
 
 There are two additional parts to this project: TS and wasm bindings. To compile both you can run `npm run build`. To test them locally you can run `npm run pack`. This will build two separate projects and produce two separate tar files. From there you can `npm install <tarball>` to test the changes locally.
 
+(Note: you can `tar -tzf <module>.tgz` to debug if there are issues)
+
 ## WASM module
 
 Probably you will just be interested in running `npm run build:wasm`. This will generate the bindings in [mail-parser-wasm/pkg](./mail-parser-wasm/pkg/). There is a separate npm workspace for that part of the project. Then to import this locally you can use `npm run pack:wasm`, which will generate a tar file inside [mail-parser-wasm](./mail-parser-wasm/). For more details read on:
@@ -293,6 +295,8 @@ cargo test export_bindings --features ts-bindings
 ```
 
 Note the `--features ts-bindings` flag is required, to avoid conflicts of the wasm binding compilation. Also `TS_RS_EXPORT_DIR` can be set to export to somewhere besides just bindings.
+
+NOTE: due to a potential bug [#378](https://github.com/Aleph-Alpha/ts-rs/issues/378) setting `TS_RS_EXPORT_DIR` results in index.ts not being included in the output, so I'm currently just cp -r bindings/* (the default dir). I'll change this when I get more clarity on that issue.
 
 User them like this
 

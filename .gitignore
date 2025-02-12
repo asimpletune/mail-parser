@@ -4,3 +4,5 @@ perf.*
 *.svg
 Cargo.lock
 .vscode
+pkg
+bindings

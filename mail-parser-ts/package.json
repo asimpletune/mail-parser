@@ -1,11 +1,16 @@
 {
   "private": true,
   "name": "@mail-parser/ts-bindings",
+  "collaborators": [
+    "Stalwart Labs <hello@stalw.art>"
+  ],
   "version": "0.9.1",
   "description": "TS bindings for Stalwart Lab's mail-parser",
   "main": "bindings/index.js",
   "types": "bindings/index.d.ts",
-  "files": ["bindings/"],
+  "files": [
+    "bindings/"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/asimpletune/mail-parser.git"
@@ -20,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/asimpletune/mail-parser/issues"
   },
-  "homepage": "https://github.com/asimpletune/mail-parser#readme"
+  "homepage": "https://github.com/asimpletune/mail-parser#readme",
+  "scripts": {
+    "build": "cargo test export_bindings --features ts-bindings && mkdir -p bindings && cp -r ../bindings/* ./bindings/"
+  }
 }
