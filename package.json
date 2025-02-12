@@ -1,12 +1,11 @@
 {
   "private": true,
-  "name": "mail-parser-ts-bindings",
+  "name": "mail-parser",
   "version": "0.9.1",
-  "description": "TS bindings for Stalwart Lab's mail-parser",
-  "main": "bindings/index.js",
-  "types": "bindings/index.d.ts",
-  "files": [
-    "bindings/"
+  "description": "TS bindings and wasm support for Stalwart Lab's mail-parser",
+  "workspaces": [
+    "mail-parser-ts",
+    "mail-parser-wasm"
   ],
   "repository": {
     "type": "git",
@@ -15,12 +14,21 @@
   "keywords": [
     "TS",
     "email",
-    "bindings"
+    "bindings",
+    "wasm"
   ],
   "author": "Spencer Scorcelletti",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/asimpletune/mail-parser/issues"
   },
-  "homepage": "https://github.com/asimpletune/mail-parser#readme"
+  "homepage": "https://github.com/asimpletune/mail-parser#readme",
+  "scripts": {
+    "build:ts": "TS_RS_EXPORT_DIR='mail-parser-ts/bindings' cargo test export_bindings --features ts-bindings",
+    "build:wasm": "wasm-pack build --target web --features serde_support && mv pkg mail-parser-wasm/",
+    "build": "npm run build:ts && npm run build:wasm",
+    "pack:ts": "npm pack -w mail-parser-ts --pack-destination mail-parser-ts",
+    "pack:wasm": "npm pack -w mail-parser-wasm --pack-destination mail-parser-wasm",
+    "pack": "npm run pack:ts && npm run pack:wasm"
+  }
 }

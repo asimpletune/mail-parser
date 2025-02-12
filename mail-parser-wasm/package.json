@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "name": "@mail-parser/wasm-bindings",
+  "version": "0.9.1",
+  "description": "wasm bindings for Stalwart Lab's mail-parser",
+  "main": "pkg/mail_parser.js",
+  "types": "pkg/mail_parser.d.ts",
+  "files": ["pkg/"],
+  "keywords": [
+    "wasm",
+    "email",
+    "bindings"
+  ],
+  "author": "Spencer Scorcelletti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/asimpletune/mail-parser/issues"
+  },
+  "homepage": "https://github.com/asimpletune/mail-parser#readme"
+}

@@ -36,6 +36,7 @@ default = ["full_encoding"]
 full_encoding = ["encoding_rs"]
 serde_support = ["serde"]
 ludicrous_mode = []
+ts-bindings = []
 
 [profile.bench]
 debug = true

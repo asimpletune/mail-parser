@@ -225,66 +225,80 @@ and, to run the benchmarks:
 - UTF-16, UTF-16BE, UTF-16LE
 - UTF-7
 - US-ASCII
-- ISO-8859-1 
-- ISO-8859-2 
-- ISO-8859-3 
-- ISO-8859-4 
-- ISO-8859-5 
-- ISO-8859-6 
-- ISO-8859-7 
-- ISO-8859-8 
-- ISO-8859-9 
-- ISO-8859-10 
-- ISO-8859-13 
-- ISO-8859-14 
-- ISO-8859-15 
+- ISO-8859-1
+- ISO-8859-2
+- ISO-8859-3
+- ISO-8859-4
+- ISO-8859-5
+- ISO-8859-6
+- ISO-8859-7
+- ISO-8859-8
+- ISO-8859-9
+- ISO-8859-10
+- ISO-8859-13
+- ISO-8859-14
+- ISO-8859-15
 - ISO-8859-16
-- CP1250 
-- CP1251 
-- CP1252 
-- CP1253 
-- CP1254 
-- CP1255 
-- CP1256 
-- CP1257 
+- CP1250
+- CP1251
+- CP1252
+- CP1253
+- CP1254
+- CP1255
+- CP1256
+- CP1257
 - CP1258
 - KOI8-R
 - KOI8_U
 - MACINTOSH
 - IBM850
 - TIS-620
-  
+
 Supported character sets via the optional dependency [encoding_rs](https://crates.io/crates/encoding_rs):
-  
+
 - SHIFT_JIS
 - BIG5
-- EUC-JP 
-- EUC-KR 
+- EUC-JP
+- EUC-KR
 - GB18030
 - GBK
-- ISO-2022-JP 
+- ISO-2022-JP
 - WINDOWS-874
 - IBM-866
 
+## TS and wasm build/test
+
+There are two additional parts to this project: TS and wasm bindings. To compile both you can run `npm run build`. To test them locally you can run `npm run pack`. This will build two separate projects and produce two separate tar files. From there you can `npm install <tarball>` to test the changes locally.
+
 ## WASM module
 
-There's a single `parse_email` function in [lib.rs](./src/lib.rs) that's exported and exposes this library's capabilities to other wasm compatibile projects. To generate the wasm run the following:
+Probably you will just be interested in running `npm run build:wasm`. This will generate the bindings in [mail-parser-wasm/pkg](./mail-parser-wasm/pkg/). There is a separate npm workspace for that part of the project. Then to import this locally you can use `npm run pack:wasm`, which will generate a tar file inside [mail-parser-wasm](./mail-parser-wasm/). For more details read on:
+
+There's a single `parse_email` function in [lib.rs](./src/lib.rs) that's exported and exposes this library's capabilities to other wasm compatible projects. To generate the wasm run the following:
 
 ```bash
 wasm-pack build --target web --features serde_support
 ```
 
-Note that this is extremely finicky, since the [typescript bindings](#typescript-bindings) are not compatible with this build step. I currently just comment them out, build the wasm module, and then uncomment them again.
-
 ## Typescript bindings
+
+Probably you will just be interested in running `npm run build:ts`. This will generate the bindings in [mail-parser-ts/bindings](./mail-parser-ts/bindings/). There is a separate npm workspace for that part of the project. Then to import this locally you can use `npm run pack:ts`, which will generate a tar file inside [mail-parser-ts](./mail-parser-ts/). For more details read on:
 
 This project uses TS bindings from [`ts-rs`](https://github.com/Aleph-Alpha/ts-rs) to generate TS bindings from the Rust structs. Please refer to that project for specifics on using that.
 
-```
-import { Message, Addr } from 'mail-parser-ts-bindings'
+To export the bindings run:
+
+```sh
+cargo test export_bindings --features ts-bindings
 ```
 
-To test changes locally just run `npm pack`, which will generate a tarball, copy it to the new project, and then `npm install <tarball>` to test the changes locally.
+Note the `--features ts-bindings` flag is required, to avoid conflicts of the wasm binding compilation. Also `TS_RS_EXPORT_DIR` can be set to export to somewhere besides just bindings.
+
+User them like this
+
+```ts
+import { Message, Addr } from 'mail-parser-ts-bindings'
+```
 
 ## License
 
