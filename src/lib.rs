@@ -753,9 +753,10 @@ use js_sys::Uint8Array;
 
 #[wasm_bindgen]
 pub fn parse_email(email_bytes: Uint8Array) -> JsValue {
+    let serializer = serde_wasm_bindgen::Serializer::json_compatible().serialize_missing_as_null(true);
     let bytes = email_bytes.to_vec();
     MessageParser::default()
         .parse(&bytes)
-        .map(|message| serde_wasm_bindgen::to_value(&message).unwrap())
+        .map(|message| message.serialize(&serializer).unwrap())
         .unwrap_or(JsValue::NULL)
 }
