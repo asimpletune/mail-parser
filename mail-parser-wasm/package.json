@@ -9,20 +9,16 @@
   "license": "Apache-2.0 OR MIT",
   "description": "wasm bindings for Stalwart Lab's mail-parser",
   "scripts": {
-    "build:web": "wasm-pack build -d mail-parser-wasm/dist/web --target web --no-pack --release --features serde_support",
+    "build:web": "wasm-pack build -d mail-parser-wasm/dist/web --target web --no-pack --release --features serde_support && mv dist/web/mail_parser.js dist/web/mail_parser.mjs",
     "build:node": "wasm-pack build -d mail-parser-wasm/dist/node --target nodejs --no-pack --release --features serde_support",
     "build:patch": "npm run patch-declarations",
-    "build": "npm run build:web && npm run build:node"
+    "build": "npm run build:web && npm run build:node",
+    "pack": "pwd && npm pack --dry-run"
   },
   "files": ["dist/**/*",  "LICENSE-MIT", "LICENSE-APACHE"],
   "main": "dist/node/mail_parser.js",
-  "browser": "dist/web/mail_parser.js",
+  "type": "commonjs",
   "exports": {
-    ".": {
-      "node": "./dist/node/mail_parser.js",
-      "browser": "./dist/web/mail_parser.js",
-      "default": "./dist/web/mail_parser.js"
-    },
     "./node": {
       "types": "./dist/node/mail_parser.d.ts",
       "import": "./dist/node/mail_parser.js",
@@ -30,16 +26,7 @@
     },
     "./web": {
       "types": "./dist/web/mail_parser.d.ts",
-      "import": "./dist/web/mail_parser.js"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "node": ["dist/node/mail_parser.d.ts"],
-      "browser": ["dist/web/mail_parser.d.ts"],
-      "./node": ["dist/node/mail_parser.d.ts"],
-      "./web": ["dist/web/mail_parser.d.ts"],
-      "default": ["dist/web/mail_parser.d.ts"]
+      "import": "./dist/web/mail_parser.mjs"
     }
   },
   "keywords": [

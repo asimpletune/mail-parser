@@ -27,8 +27,9 @@
     "build:ts": "npm run --workspace mail-parser-ts build",
     "build:wasm": "npm run --workspace mail-parser-wasm build",
     "build": "npm run build:ts && npm run build:wasm",
-    "pack:ts": "npm pack --workspace mail-parser-ts --pack-destination mail-parser-ts",
-    "pack:wasm": "npm pack --workspace mail-parser-wasm --pack-destination mail-parser-wasm",
-    "pack": "npm run pack:ts && npm run pack:wasm"
+    "pack:ts": "npm pack --workspace mail-parser-ts --pack-destination mail-parser-ts"
+  },
+  "volta": {
+    "node": "20.10.0"
   }
 }
