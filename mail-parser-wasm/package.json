@@ -1,7 +1,6 @@
 {
   "private": true,
   "name": "@mail-parser/wasm-bindings",
-  "type": "module",
   "collaborators": [
     "Stalwart Labs <hello@stalw.art>"
   ],
@@ -9,17 +8,39 @@
   "license": "Apache-2.0 OR MIT",
   "description": "wasm bindings for Stalwart Lab's mail-parser",
   "scripts": {
-    "build": "wasm-pack build --target web --no-pack --features serde_support && cp -r ../pkg/* . && npm run patch-declarations",
+    "build:web": "wasm-pack build -d mail-parser-wasm/dist/web --target web --no-pack --release --features serde_support",
+    "build:node": "wasm-pack build -d mail-parser-wasm/dist/node --target nodejs --no-pack --release --features serde_support",
+    "build:patch": "npm run patch-declarations",
+    "build": "npm run build:web && npm run build:node",
     "patch-declarations": "node patch-declarations.js"
   },
-  "files": [
-    "mail_parser_bg.wasm",
-    "mail_parser.js",
-    "mail_parser.d.ts",
-    "mail_parser_bg.wasm.d.ts"
-  ],
-  "main": "mail_parser.js",
-  "types": "mail_parser.d.ts",
+  "files": ["dist/**/*"],
+  "main": "dist/node/mail_parser.js",
+  "browser": "dist/web/mail_parser.js",
+  "exports": {
+    ".": {
+      "node": "./dist/node/mail_parser.js",
+      "default": "./dist/web/mail_parser.js"
+    },
+    "./node": "./dist/node/mail_parser.js",
+    "./web": "./dist/web/mail_parser.js",
+    "./mail_parser_bg.wasm": {
+      "node": "./dist/node/mail_parser_bg.wasm",
+      "default": "./dist/web/mail_parser_bg.wasm"
+    },
+    "./node/mail_parser_bg.wasm": "./dist/node/mail_parser_bg.wasm",
+    "./web/mail_parser_bg.wasm": "./dist/web/mail_parser_bg.wasm"
+  },
+  "typesVersions": {
+    "*": {
+      "node": [
+        "dist/node/mail_parser.d.ts"
+      ],
+      "browser": [
+        "dist/web/mail_parser.d.ts"
+      ]
+    }
+  },
   "keywords": [
     "wasm",
     "email",
