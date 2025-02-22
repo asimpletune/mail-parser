@@ -2,7 +2,8 @@
   "private": true,
   "name": "@mail-parser/wasm-bindings",
   "collaborators": [
-    "Stalwart Labs <hello@stalw.art>"
+    "Stalwart Labs <hello@stalw.art>",
+    "Spencer Scorcelletti <hello@spenc.es>"
   ],
   "version": "0.9.1",
   "license": "Apache-2.0 OR MIT",
@@ -11,10 +12,9 @@
     "build:web": "wasm-pack build -d mail-parser-wasm/dist/web --target web --no-pack --release --features serde_support",
     "build:node": "wasm-pack build -d mail-parser-wasm/dist/node --target nodejs --no-pack --release --features serde_support",
     "build:patch": "npm run patch-declarations",
-    "build": "npm run build:web && npm run build:node",
-    "patch-declarations": "node patch-declarations.js"
+    "build": "npm run build:web && npm run build:node"
   },
-  "files": ["dist/**/*"],
+  "files": ["dist/**/*",  "LICENSE-MIT", "LICENSE-APACHE"],
   "main": "dist/node/mail_parser.js",
   "browser": "dist/web/mail_parser.js",
   "exports": {

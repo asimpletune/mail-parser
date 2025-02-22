@@ -274,13 +274,7 @@ There are two additional parts to this project: TS and wasm bindings. To compile
 
 ## WASM module
 
-Probably you will just be interested in running `npm run build:wasm`. This will generate the bindings in [mail-parser-wasm/pkg](./mail-parser-wasm/pkg/). There is a separate npm workspace for that part of the project. Then to import this locally you can use `npm run pack:wasm`, which will generate a tar file inside [mail-parser-wasm](./mail-parser-wasm/). For more details read on:
-
-There's a single `parse_email` function in [lib.rs](./src/lib.rs) that's exported and exposes this library's capabilities to other wasm compatible projects. To generate the wasm run the following:
-
-```bash
-wasm-pack build --target web --features serde_support
-```
+See that workspace's [README](./mail-parser-wasm/README.md).
 
 ## Typescript bindings
 
